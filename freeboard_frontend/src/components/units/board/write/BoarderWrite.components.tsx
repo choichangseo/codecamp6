@@ -2,13 +2,8 @@ import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoarderWriteUI from "./BoarderWrite.presenter";
-import {
-  CREATE_BOARD,
-  UPDATE_BOARD,
-  FETCH_BOARD,
-} from "./BoarderWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoarderWrite.queries";
 import { BoarderWritePageProps, IUpdateBoardInput } from "./BoarderWrite.types";
-import { Contents } from "../detail/BorderDetail.styled";
 
 export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [isActive, setIsActive] = useState(false);
@@ -20,10 +15,12 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [passworderror, setPasswordError] = useState("");
   const [titleerror, setTitleError] = useState("");
   const [contentserror, setContentsError] = useState("");
-  const [API] = useMutation(CREATE_BOARD);
+  const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const router = useRouter();
 
+  
+  
   function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
     if (event.target.value == "") {
@@ -115,7 +112,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
         },
       });
       alert("게시물 수정에 성공했습니다.");
-      router.push(`/boards/${router.query.boardId}`);
+      router.push(`/boards/${String(router.query.boardId)}`);
     } catch (error) {
       alert("비밀번호를 확인해주세요.");
     }
@@ -136,7 +133,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
     }
     if (writer !== "" && password !== "" && title !== "" && contents !== "") {
       try {
-        const result = await API({
+        const result = await createBoard({
           variables: {
             createBoardInput: {
               writer: writer,
@@ -148,7 +145,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
         });
         console.log(result);
         alert("게시물이 작성되었습니다.");
-        router.push(`/boards/${result.data.createBoard._id}`);
+        router.push(`/boards/${String(result.data.createBoard._id)}`);
       } catch (error) {
         console.log("에러입니다.");
       }
