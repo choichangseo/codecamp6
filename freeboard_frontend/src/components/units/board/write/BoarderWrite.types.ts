@@ -14,6 +14,7 @@ export interface BoarderWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTittle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
   writererror: string;
   passworderror: string;
   titleerror: string;

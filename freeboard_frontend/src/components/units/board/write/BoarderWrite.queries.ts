@@ -10,6 +10,7 @@ export const CREATE_BOARD = gql`
       likeCount
       dislikeCount
       createdAt
+      youtubeUrl
     }
   }
 `;

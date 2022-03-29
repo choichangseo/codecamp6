@@ -11,7 +11,7 @@ export default function ReplyWrite() {
   const [writererror, setWriterError] = useState("");
   const [password, setPassword] = useState("");
   const [passworderror, setPasswordError] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(1);
   const [createBoardComment] = useMutation(CREATE_COMMENT);
   const router = useRouter();
 
@@ -36,8 +36,8 @@ export default function ReplyWrite() {
     }
   };
 
-  const onChangeRating = (event: ChangeEvent<HTMLInputElement>) => {
-    setRating(event.target.value);
+  const handleChange = (value: any) => {
+    setRating(value);
   };
 
   const onClickRegisterButton = async () => {
@@ -45,7 +45,7 @@ export default function ReplyWrite() {
       variables: {
         createBoardCommentInput: {
           writer,
-          password,
+          password: String(password),
           contents: comment,
           rating: Number(rating),
         },
@@ -65,11 +65,12 @@ export default function ReplyWrite() {
       onChangeReply={onChangeReply}
       onChangeWriter={onChangeWriter}
       onChangePassword={onChangePassword}
-      onChangeRating={onChangeRating}
       onClickRegisterButton={onClickRegisterButton}
+      comment={comment}
       commenterror={commenterror}
       writererror={writererror}
       passworderror={passworderror}
+      handleChange={handleChange}
     />
   );
 }

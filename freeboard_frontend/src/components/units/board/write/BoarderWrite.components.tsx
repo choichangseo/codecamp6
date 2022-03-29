@@ -6,6 +6,7 @@ import { CREATE_BOARD, UPDATE_BOARD } from "./BoarderWrite.queries";
 import { BoarderWritePageProps, IUpdateBoardInput } from "./BoarderWrite.types";
 
 export default function BoarderWriterPage(props: BoarderWritePageProps) {
+  const [youtube, setYoutube] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -19,8 +20,10 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const router = useRouter();
 
-  
-  
+  const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutube(event?.target.value);
+  };
+
   function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
     if (event.target.value == "") {
@@ -108,7 +111,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
         variables: {
           password,
           boardId: router.query.boardId,
-          updateBoardInput: { title, contents },
+          updateBoardInput: { title, contents, youtubeUrl: youtube },
         },
       });
       alert("게시물 수정에 성공했습니다.");
@@ -140,6 +143,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
               password: password,
               title: title,
               contents: contents,
+              youtubeUrl: youtube,
             },
           },
         });
@@ -158,6 +162,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       onChangePassword={onChangePassword}
       onChangeTittle={onChangeTittle}
       onChangeWriter={onChangeWriter}
+      onChangeYoutube={onChangeYoutube}
       writererror={writererror}
       passworderror={passworderror}
       titleerror={titleerror}

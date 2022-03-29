@@ -1,10 +1,14 @@
 import * as S from "./BorderDetail.styled";
 import { getDate } from "../../../../commons/libraries/utils";
 import { MouseEvent } from "react";
+import React from "react";
+import ReactPlayer from "react-player";
 
 interface BoarderDetailUIProps {
   data?: any;
   onClickDelete: (event: MouseEvent<HTMLDivElement>) => void;
+  onClickLikeBoard: (event: MouseEvent<HTMLImageElement>) => void;
+  onClickDisLikeBoard: (event: MouseEvent<HTMLImageElement>) => void;
   onClickEditPage: () => void;
   onClickListPage: () => void;
 }
@@ -42,16 +46,30 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
             </S.ContentsImg>
             <S.Contents>{props.data?.fetchBoard.contents}</S.Contents>
             <S.Video>
-              <img src="/video.png" width="486" height="240" />
+              <ReactPlayer
+                url={props.data?.fetchBoard.youtubeUrl}
+                width={486}
+                height={240}
+              />
             </S.Video>
           </S.ContentsBody>
           <S.Likewrapper>
             <S.Like>
-              <img src="/good.png" width="20" height="18" />
+              <img
+                onClick={props.onClickLikeBoard}
+                src="/good.png"
+                width="20"
+                height="18"
+              />
               <S.LikeCount>{props.data?.fetchBoard.likeCount}</S.LikeCount>
             </S.Like>
             <S.DisLike>
-              <img src="/bad.png" width="20" height="18" />
+              <img
+                onClick={props.onClickDisLikeBoard}
+                src="/bad.png"
+                width="20"
+                height="18"
+              />
               <S.DisCount>{props.data?.fetchBoard.dislikeCount}</S.DisCount>
             </S.DisLike>
           </S.Likewrapper>
