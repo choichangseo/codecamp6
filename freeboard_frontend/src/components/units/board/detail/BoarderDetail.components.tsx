@@ -32,6 +32,7 @@ export default function BoardDetail() {
   };
   const onClickEditPage = () => {
     router.push(`/boards/${String(router.query.boardId)}/edit`);
+    console.log(data);
   };
 
   const onClickListPage = () => {

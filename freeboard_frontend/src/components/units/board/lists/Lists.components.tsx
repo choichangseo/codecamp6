@@ -1,11 +1,12 @@
-import { useQuery } from "@apollo/client";
 import ListPresenter from "./Lists.presenter";
-import { FETCH_BOARDS } from "./Lists.queries";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 
-export default function ListComponents() {
-  const { data } = useQuery(FETCH_BOARDS);
+interface ListComponentsProps {
+  data?: any;
+}
+
+export default function ListComponents(props: ListComponentsProps) {
   const router = useRouter();
   const onClickMoveBoarderWrite = () => {
     router.push(`/boards/new`);
@@ -15,10 +16,12 @@ export default function ListComponents() {
   };
 
   return (
-    <ListPresenter
-      data={data}
-      onClickMoveBoarderWrite={onClickMoveBoarderWrite}
-      onClickMoveBoardTitle={onClickMoveBoardTitle}
-    />
+    <>
+      <ListPresenter
+        data={props.data}
+        onClickMoveBoarderWrite={onClickMoveBoarderWrite}
+        onClickMoveBoardTitle={onClickMoveBoardTitle}
+      />
+    </>
   );
 }

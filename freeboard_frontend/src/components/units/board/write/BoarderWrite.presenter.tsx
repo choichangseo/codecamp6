@@ -67,7 +67,9 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
           <S.Fourth_input
             readOnly
             value={
-              props.myhome || props.data?.fetchBoard.boardAddress?.address || ""
+              props.myhome
+                ? props.myhome
+                : props.data?.fetchBoard.boardAddress?.address
             }
             type="text"
           />

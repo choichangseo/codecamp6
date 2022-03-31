@@ -137,8 +137,9 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
           updateBoardInput,
         },
       });
-      Modal.success({ content: "게시물이 작성되었습니다." });
+      Modal.success({ content: "게시물이 수정되었습니다." });
       router.push(`/boards/${String(router.query.boardId)}`);
+      console.log(updateBoardInput);
     } catch (error) {
       Modal.error({ content: error.message });
     }

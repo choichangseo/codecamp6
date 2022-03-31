@@ -48,7 +48,7 @@ export default function MapBoardPage() {
   };
 
   const onClickNextPage = (event) => {
-    if (!(startPage + 10 <= lastPage)) return;
+    if (startPage + 10 > lastPage) return;
     setStartPage((prev) => prev + 10);
     refetch({ page: startPage + 10 });
   };
