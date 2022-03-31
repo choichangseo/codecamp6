@@ -165,3 +165,9 @@ export const MarkLine = styled.div`
   margin-bottom: 40px;
   border-bottom: 1px solid #bdbdbd;
 `;
+
+export const Bbb = styled.div``;
+
+export const Zipcode = styled.div``;
+
+export const AddressDetail = styled.div``;

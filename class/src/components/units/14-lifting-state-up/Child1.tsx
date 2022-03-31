@@ -1,0 +1,13 @@
+import { useState } from "react";
+export default function Child1(props) {
+  //   방법 - 2
+  const aaa = () => {
+    props.setCount((prev) => prev + 1);
+  };
+  return (
+    <div>
+      <div>자식 1의 카운트 : {props.count}</div>
+      <button onClick={aaa}>카운트</button>
+    </div>
+  );
+}

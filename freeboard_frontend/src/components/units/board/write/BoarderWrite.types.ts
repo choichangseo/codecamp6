@@ -15,6 +15,7 @@ export interface BoarderWriteUIProps {
   onChangeTittle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeAddress: (event: ChangeEvent<HTMLInputElement>) => void;
   writererror: string;
   passworderror: string;
   titleerror: string;
@@ -24,9 +25,23 @@ export interface BoarderWriteUIProps {
   isActive: boolean;
   isEdit?: boolean;
   data?: any;
+  showModal: any;
+  handleOk: any;
+  handleCancel: any;
+  isModalVisible: any;
+  handleComplete: any;
+  myhome: string;
+  zipcode: string;
+  addressDetail: string;
 }
 
 export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }

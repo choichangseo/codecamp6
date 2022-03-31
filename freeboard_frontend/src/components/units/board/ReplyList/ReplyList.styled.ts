@@ -46,3 +46,4 @@ export const DeleteImg = styled.div`
 export const EditImg = styled.div`
   margin-left: 10px;
 `;
+export const InputPass = styled.input``;

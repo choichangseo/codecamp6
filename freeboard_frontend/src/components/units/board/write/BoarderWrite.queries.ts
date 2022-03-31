@@ -11,6 +11,11 @@ export const CREATE_BOARD = gql`
       dislikeCount
       createdAt
       youtubeUrl
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
@@ -26,20 +31,6 @@ export const UPDATE_BOARD = gql`
       password: $password
       boardId: $boardId
     ) {
-      _id
-      writer
-      title
-      contents
-      likeCount
-      dislikeCount
-      createdAt
-    }
-  }
-`;
-
-export const FETCH_BOARD = gql`
-  query fetchBoard($boardId: ID!) {
-    fetchBoard(boardId: $boardId) {
       _id
       writer
       title

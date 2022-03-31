@@ -3,6 +3,7 @@ import { getDate } from "../../../../commons/libraries/utils";
 import { MouseEvent } from "react";
 import React from "react";
 import ReactPlayer from "react-player";
+import { Address } from "./BorderDetail.styled";
 
 interface BoarderDetailUIProps {
   data?: any;
@@ -17,8 +18,13 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
   return (
     <S.Wrapper>
       <S.MainWrapper>
+        <S.Bbb>{props.data?.fetchBoard.boardAddress.address}</S.Bbb>
+        <S.Zipcode>{props.data?.fetchBoard.boardAddress.zipcode}</S.Zipcode>
+        <S.AddressDetail>
+          {props.data?.fetchBoard.boardAddress.addressDetail}
+        </S.AddressDetail>
         <S.Address>
-          <img src="/address.png" width="376" height="64" />
+          <img src="/homezip.png" width="376" height="64" />
         </S.Address>
         <S.Header>
           <S.ProfileWrapper>

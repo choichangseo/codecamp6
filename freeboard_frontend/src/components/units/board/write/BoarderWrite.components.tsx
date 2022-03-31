@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import BoarderWriteUI from "./BoarderWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoarderWrite.queries";
 import { BoarderWritePageProps, IUpdateBoardInput } from "./BoarderWrite.types";
+import { Modal } from "antd";
 
 export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [youtube, setYoutube] = useState("");
@@ -18,10 +19,24 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [contentserror, setContentsError] = useState("");
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [myhome, setMyhome] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
   const router = useRouter();
 
+  const handleComplete = (data: any) => {
+    setIsModalVisible((prev) => !prev);
+    console.log(data);
+    setMyhome(data.address);
+    setZipcode(data.zonecode);
+  };
+  const onChangeAddress = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
+
   const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
-    setYoutube(event?.target.value);
+    setYoutube(event.target.value);
   };
 
   function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
@@ -93,31 +108,39 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   }
 
   const onClickEditPage = async () => {
-    if (!title && !contents) {
-      alert("수정한 내용이 없습니다.");
+    if (!title && !contents && !myhome && !addressDetail && !zipcode) {
+      Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     }
     if (!password) {
-      alert("비밀번호를 입력해주세요.");
+      Modal.error({ content: "비밀번호를 입력헤주세요" });
       return;
     }
 
     const updateBoardInput: IUpdateBoardInput = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if (youtube) updateBoardInput.youtubeUrl = youtube;
+    if (zipcode || addressDetail || myhome) {
+      updateBoardInput.boardAddress = {};
+      if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
+      if (myhome) updateBoardInput.boardAddress.address = myhome;
+      if (addressDetail)
+        updateBoardInput.boardAddress.addressDetail = addressDetail;
+    }
 
     try {
       await updateBoard({
         variables: {
           password,
           boardId: router.query.boardId,
-          updateBoardInput: { title, contents, youtubeUrl: youtube },
+          updateBoardInput,
         },
       });
-      alert("게시물 수정에 성공했습니다.");
+      Modal.success({ content: "게시물이 작성되었습니다." });
       router.push(`/boards/${String(router.query.boardId)}`);
     } catch (error) {
-      alert("비밀번호를 확인해주세요.");
+      Modal.error({ content: error.message });
     }
   };
 
@@ -144,16 +167,33 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
               title: title,
               contents: contents,
               youtubeUrl: youtube,
+              boardAddress: {
+                zipcode: String(zipcode),
+                address: myhome,
+                addressDetail: addressDetail,
+              },
             },
           },
         });
         console.log(result);
-        alert("게시물이 작성되었습니다.");
+        Modal.success({ content: "게시물이 작성되었습니다." });
         router.push(`/boards/${String(result.data.createBoard._id)}`);
       } catch (error) {
-        console.log("에러입니다.");
+        Modal.error({ content: error.message });
       }
     }
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -163,6 +203,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       onChangeTittle={onChangeTittle}
       onChangeWriter={onChangeWriter}
       onChangeYoutube={onChangeYoutube}
+      onChangeAddress={onChangeAddress}
       writererror={writererror}
       passworderror={passworderror}
       titleerror={titleerror}
@@ -172,6 +213,14 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
+      showModal={showModal}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      isModalVisible={isModalVisible}
+      handleComplete={handleComplete}
+      myhome={myhome}
+      zipcode={zipcode}
+      addressDetail={addressDetail}
     />
   );
 }

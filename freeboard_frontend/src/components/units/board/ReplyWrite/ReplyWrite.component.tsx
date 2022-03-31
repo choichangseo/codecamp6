@@ -3,6 +3,7 @@ import { CREATE_COMMENT, FETCH_BOARDS_COMMENTS } from "./ReplyWrite.queries";
 import { useState, ChangeEvent } from "react";
 import ReplyWritePresenter from "./ReplyWrite.presenter";
 import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 
 export default function ReplyWrite() {
   const [comment, setComment] = useState("");
@@ -41,23 +42,28 @@ export default function ReplyWrite() {
   };
 
   const onClickRegisterButton = async () => {
-    await createBoardComment({
-      variables: {
-        createBoardCommentInput: {
-          writer,
-          password: String(password),
-          contents: comment,
-          rating: Number(rating),
+    try {
+      await createBoardComment({
+        variables: {
+          createBoardCommentInput: {
+            writer,
+            password: String(password),
+            contents: comment,
+            rating: Number(rating),
+          },
+          boardId: String(router.query.boardId),
         },
-        boardId: String(router.query.boardId),
-      },
-      refetchQueries: [
-        {
-          query: FETCH_BOARDS_COMMENTS,
-          variables: { boardId: router.query.boardId },
-        },
-      ],
-    });
+        refetchQueries: [
+          {
+            query: FETCH_BOARDS_COMMENTS,
+            variables: { boardId: router.query.boardId },
+          },
+        ],
+      });
+      Modal.success({ content: "댓글이 작성되었습니다." });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
   };
 
   return (
