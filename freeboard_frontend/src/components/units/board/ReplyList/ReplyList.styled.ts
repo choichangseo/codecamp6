@@ -46,3 +46,9 @@ export const EditImg = styled.div`
   margin-left: 10px;
 `;
 export const InputPass = styled.input``;
+
+export const Scroll = styled.div`
+  height: 500px;
+  width: 1200px;
+  overflow: auto;
+`;

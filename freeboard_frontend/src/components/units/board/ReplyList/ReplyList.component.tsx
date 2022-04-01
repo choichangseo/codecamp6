@@ -46,10 +46,26 @@ export default function ReplyList() {
     setIsModalVisible(false);
   };
 
-  const { data: data2 } = useQuery(FETCH_BOARDS_COMMENTS, {
+  const { data: data2, fetchMore } = useQuery(FETCH_BOARDS_COMMENTS, {
     variables: { boardId: String(router.query.boardId) },
   });
-  console.log(data2);
+
+  const onLoadMore = () => {
+    if (!data2) return;
+    fetchMore({
+      variables: { page: Math.ceil(data2.fetchBoardComments.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult.fetchBoardComments)
+          return { fetchBoardComments: [...prev.fetchBoardComments] };
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
+    });
+  };
 
   return (
     <>
@@ -61,6 +77,7 @@ export default function ReplyList() {
         onChangePassword={onChangePassword}
         showModal={showModal}
         isModalVisible={isModalVisible}
+        onLoadMore={onLoadMore}
       />
     </>
   );

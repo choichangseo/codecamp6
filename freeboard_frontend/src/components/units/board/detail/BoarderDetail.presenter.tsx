@@ -3,7 +3,6 @@ import { getDate } from "../../../../commons/libraries/utils";
 import { MouseEvent } from "react";
 import React from "react";
 import ReactPlayer from "react-player";
-import { Address } from "./BorderDetail.styled";
 
 interface BoarderDetailUIProps {
   data?: any;

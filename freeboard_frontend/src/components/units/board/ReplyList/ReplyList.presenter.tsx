@@ -13,21 +13,17 @@ interface ReplyListPresenterProps {
   handleOk: any;
   showModal: (event: MouseEvent<HTMLImageElement>) => void;
   isModalVisible: any;
+  onLoadMore: () => void;
 }
 
 export default function ReplyListPresenter(props: ReplyListPresenterProps) {
   return (
     <S.Wrapper>
-      <div style="height:700px;overflow:auto;">
+      <S.Scroll>
         <InfiniteScroll
           pageStart={0}
-          loadMore={loadFunc}
-          hasMore={true || false}
-          loader={
-            <div className="loader" key={0}>
-              Loading ...
-            </div>
-          }
+          loadMore={props.onLoadMore}
+          hasMore={true}
           useWindow={false}
         >
           {props.data2?.fetchBoardComments.map((el: any) => (
@@ -38,7 +34,7 @@ export default function ReplyListPresenter(props: ReplyListPresenterProps) {
             />
           ))}
         </InfiniteScroll>
-      </div>
+      </S.Scroll>
       {props.isModalVisible && (
         <Modal
           visible={true}
