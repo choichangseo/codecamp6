@@ -1,10 +1,9 @@
-import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./ReplyList.styled";
-import { MouseEvent } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 import "antd/dist/antd.css";
-import { Rate } from "antd";
-import "antd/dist/antd.css";
+import ReplyCommentItem from "./ReplyCommentItem";
 import { Modal } from "antd";
+import InfiniteScroll from "react-infinite-scroller";
 
 interface ReplyListPresenterProps {
   data2?: any;
@@ -19,44 +18,34 @@ interface ReplyListPresenterProps {
 export default function ReplyListPresenter(props: ReplyListPresenterProps) {
   return (
     <S.Wrapper>
-      {props.data2?.fetchBoardComments.map((el: any) => (
-        <S.ReplyResult key={el._id} id={el.writer}>
-          <S.ReplyHead>
-            <S.ProfileImg>
-              <img src="/profile.png" width="40" height="40" />
-            </S.ProfileImg>
-            <S.ReplyName>{el.writer}</S.ReplyName>
-            <Rate value={el.rating} disabled={true} />
-            <S.ButtonImgWrapper>
-              <S.EditImg>
-                <img src="/edit.png" width="14" height="14" />
-              </S.EditImg>
-              <S.DeleteImg>
-                <img
-                  src="/delete.png"
-                  width="14"
-                  height="14"
-                  id={el._id}
-                  onClick={props.showModal}
-                />
-              </S.DeleteImg>
-            </S.ButtonImgWrapper>
-          </S.ReplyHead>
-          <S.ReplyContents>{el.contents}</S.ReplyContents>
-          <S.ReplyCreatedAt>{getDate(el.createdAt)}</S.ReplyCreatedAt>
-        </S.ReplyResult>
-      ))}
+      <div style="height:700px;overflow:auto;">
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadFunc}
+          hasMore={true || false}
+          loader={
+            <div className="loader" key={0}>
+              Loading ...
+            </div>
+          }
+          useWindow={false}
+        >
+          {props.data2?.fetchBoardComments.map((el: any) => (
+            <ReplyCommentItem
+              el={el}
+              key={el._id}
+              showModal={props.showModal}
+            />
+          ))}
+        </InfiniteScroll>
+      </div>
       {props.isModalVisible && (
         <Modal
+          visible={true}
           onOk={props.onClickBoardDelete}
           onCancel={props.handleCancel}
-          visible={true}
         >
-          <S.InputPass
-            onChange={props.onChangePassword}
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
-          />
+          <input type="text" onChange={props.onChangePassword} />
         </Modal>
       )}
     </S.Wrapper>

@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   width: 1200px;
   margin-top: 30px;
-  margin-left: 355px;
 `;
 export const ReplyResult = styled.div`
   width: 100%;

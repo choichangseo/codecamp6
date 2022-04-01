@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 
 interface ReplyWritePresenterProps {
   onClickRegisterButton: () => void;
+  onClickUpdateComment: () => void;
   onChangeReply: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -13,6 +14,7 @@ interface ReplyWritePresenterProps {
   writererror: string;
   passworderror: string;
   comment: string;
+  isEdit?: boolean;
 }
 
 export default function ReplyWritePresenter(props: ReplyWritePresenterProps) {
@@ -45,8 +47,14 @@ export default function ReplyWritePresenter(props: ReplyWritePresenterProps) {
         ></S.ReplyInput>
         <S.ReplyState>
           <S.TextLength>{props.comment.length}/100</S.TextLength>
-          <S.RegisterButton onClick={props.onClickRegisterButton}>
-            등록하기
+          <S.RegisterButton
+            onClick={
+              props.isEdit
+                ? props.onClickUpdateComment
+                : props.onClickRegisterButton
+            }
+          >
+            {props.isEdit ? "수정" : "등록"}
           </S.RegisterButton>
         </S.ReplyState>
         <S.CommentError>{props.commenterror}</S.CommentError>
