@@ -3,6 +3,8 @@ import { getDate } from "../../../../commons/libraries/utils";
 import { MouseEvent } from "react";
 import React from "react";
 import ReactPlayer from "react-player";
+import { Tooltip, Button } from "antd";
+import styled from "@emotion/styled";
 
 interface BoarderDetailUIProps {
   data?: any;
@@ -14,6 +16,11 @@ interface BoarderDetailUIProps {
 }
 
 export default function BoarderDetailUI(props: BoarderDetailUIProps) {
+  const text = <span>prompt text</span>;
+  const ZipImage = styled(Button)`
+    background-image: url("./");
+  `;
+  const buttonWidth = 70;
   return (
     <S.Wrapper>
       <S.MainWrapper>
@@ -23,7 +30,13 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
           {props.data?.fetchBoard.boardAddress.addressDetail}
         </S.AddressDetail>
         <S.Address>
-          <img src="/homezip.png" width="376" height="64" />
+          <div className="demo">
+            <Tooltip placement="topRight" title={text}>
+              <ZipImage>
+                <img src="/homezip.png" width="376" height="64" />
+              </ZipImage>
+            </Tooltip>
+          </div>
         </S.Address>
         <S.Header>
           <S.ProfileWrapper>
