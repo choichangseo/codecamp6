@@ -1,6 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { getDate } from "../../../../commons/libraries/utils";
+import { IQuery } from "../../../../commons/types/generated/types";
+import { IUseditem } from "../../../../../../class/src/commons/types/generated/types";
 
 const FETCH_BOARD_BEST = gql`
   query fetchBoardsOfTheBest {
@@ -16,7 +18,9 @@ const FETCH_BOARD_BEST = gql`
 `;
 
 export default function BestBoard() {
-  const { data } = useQuery(FETCH_BOARD_BEST);
+  const { data } = useQuery<Pick<IQuery, "fetchBoardsOfTheBest">, IUseditem>(
+    FETCH_BOARD_BEST
+  );
 
   const Wrapper = styled.div`
     display: flex;

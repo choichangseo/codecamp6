@@ -8,15 +8,25 @@ import { useState, ChangeEvent } from "react";
 import ReplyWritePresenter from "./ReplyWrite.presenter";
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
+import {
+  IMutation,
+  IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
+  IQuery,
+} from "../../../../commons/types/generated/types";
+import { IQueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
 
 interface ReplyWriteProps {
-  el: any;
+  el?: any;
   isEdit?: boolean;
   setIsEdit?: any;
 }
 
 export default function ReplyWrite(props: ReplyWriteProps) {
-  const { data } = useQuery(FETCH_BOARDS_COMMENTS);
+  const { data } = useQuery<
+    Pick<IQuery, "fetchBoardComments">,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARDS_COMMENTS);
   const [comment, setComment] = useState("");
   const [commenterror, setCommentError] = useState("");
   const [writer, setWriter] = useState("");
@@ -24,8 +34,14 @@ export default function ReplyWrite(props: ReplyWriteProps) {
   const [password, setPassword] = useState("");
   const [passworderror, setPasswordError] = useState("");
   const [rating, setRating] = useState(1);
-  const [createBoardComment] = useMutation(CREATE_COMMENT);
-  const [updateBoardComment] = useMutation(UPDATE_COMMENT);
+  const [createBoardComment] = useMutation<
+    Pick<IMutation, "createBoardComment">,
+    IMutationCreateBoardCommentArgs
+  >(CREATE_COMMENT);
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_COMMENT);
   const router = useRouter();
 
   const onChangeReply = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -73,7 +89,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
         ],
       });
       Modal.success({ content: "댓글이 작성되었습니다." });
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
@@ -96,7 +112,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
       console.log(result);
       Modal.success({ content: "댓글이 수정되었습니다." });
       props.setIsEdit?.(false);
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
@@ -114,6 +130,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
       passworderror={passworderror}
       handleChange={handleChange}
       isEdit={props.isEdit}
+      data={data}
     />
   );
 }

@@ -3,6 +3,10 @@ import ReplyList from "../../../src/components/units/board/ReplyList/ReplyList.c
 import ReplyWrite from "../../../src/components/units/board/ReplyWrite/ReplyWrite.component";
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import {
+  IQuery,
+  IQueryFetchBoardArgs,
+} from "../../../src/commons/types/generated/types";
 
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -26,9 +30,12 @@ export const FETCH_BOARD = gql`
 
 export default function BoardPage() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
-  });
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    {
+      variables: { boardId: String(router.query.boardId) },
+    }
+  );
 
   return (
     <>

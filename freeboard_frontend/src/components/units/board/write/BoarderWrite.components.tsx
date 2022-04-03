@@ -5,6 +5,11 @@ import BoarderWriteUI from "./BoarderWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoarderWrite.queries";
 import { BoarderWritePageProps, IUpdateBoardInput } from "./BoarderWrite.types";
 import { Modal } from "antd";
+import { IMutation } from "../../../../../../class/src/commons/types/generated/types";
+import {
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [youtube, setYoutube] = useState("");
@@ -17,8 +22,14 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   const [passworderror, setPasswordError] = useState("");
   const [titleerror, setTitleError] = useState("");
   const [contentserror, setContentsError] = useState("");
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [myhome, setMyhome] = useState("");
   const [zipcode, setZipcode] = useState("");
@@ -133,14 +144,14 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       await updateBoard({
         variables: {
           password,
-          boardId: router.query.boardId,
+          boardId: String(router.query.boardId),
           updateBoardInput,
         },
       });
       Modal.success({ content: "게시물이 수정되었습니다." });
       router.push(`/boards/${String(router.query.boardId)}`);
       console.log(updateBoardInput);
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
@@ -178,8 +189,8 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
         });
         console.log(result);
         Modal.success({ content: "게시물이 작성되었습니다." });
-        router.push(`/boards/${String(result.data.createBoard._id)}`);
-      } catch (error) {
+        router.push(`/boards/${String(result.data?.createBoard._id)}`);
+      } catch (error: any) {
         Modal.error({ content: error.message });
       }
     }

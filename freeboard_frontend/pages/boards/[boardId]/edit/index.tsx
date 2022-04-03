@@ -1,6 +1,8 @@
 import BoarderWriterPage from "../../../../src/components/units/board/write/BoarderWrite.components";
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import { IQuery } from "../../../../../class/src/commons/types/generated/types";
+import { IQueryFetchBoardArgs } from "../../../../src/commons/types/generated/types";
 
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -23,9 +25,12 @@ export const FETCH_BOARD = gql`
 `;
 export default function BoardEditPage() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
-  });
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    {
+      variables: { boardId: String(router.query.boardId) },
+    }
+  );
 
   return <BoarderWriterPage data={data} isEdit={true} />;
 }

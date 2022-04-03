@@ -9,9 +9,16 @@ import {
 } from "./BoarderDetail.queries";
 import { useMutation } from "@apollo/client";
 import { MouseEvent, useState } from "react";
+import {
+  IMutation,
+  IMutationDeleteBoardArgs,
+} from "../../../../../../class/src/commons/types/generated/types";
 
 export default function BoardDetail() {
-  const [deleteBoard] = useMutation(DELETE_BOARD);
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, "deleteBoard">,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [password, setPassword] = useState();
@@ -23,7 +30,7 @@ export default function BoardDetail() {
 
   const onClickDelete = (event: MouseEvent<HTMLDivElement>) => {
     deleteBoard({
-      variables: { boardId: router.query.boardId },
+      variables: { boardId: String(router.query.boardId) },
       refetchQueries: [
         { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
       ],
