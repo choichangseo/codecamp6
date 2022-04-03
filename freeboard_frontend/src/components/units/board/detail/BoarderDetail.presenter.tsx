@@ -16,27 +16,14 @@ interface BoarderDetailUIProps {
 }
 
 export default function BoarderDetailUI(props: BoarderDetailUIProps) {
-  const text = <span>prompt text</span>;
-  const ZipImage = styled(Button)`
-    background-image: url("./");
+  const AddressImg = styled.img`
+    cursor: pointer;
   `;
-  const buttonWidth = 70;
   return (
     <S.Wrapper>
       <S.MainWrapper>
-        <S.Bbb>{props.data?.fetchBoard.boardAddress.address}</S.Bbb>
-        <S.Zipcode>{props.data?.fetchBoard.boardAddress.zipcode}</S.Zipcode>
-        <S.AddressDetail>
-          {props.data?.fetchBoard.boardAddress.addressDetail}
-        </S.AddressDetail>
         <S.Address>
-          <div className="demo">
-            <Tooltip placement="topRight" title={text}>
-              <ZipImage>
-                <img src="/homezip.png" width="376" height="64" />
-              </ZipImage>
-            </Tooltip>
-          </div>
+          <div></div>
         </S.Address>
         <S.Header>
           <S.ProfileWrapper>
@@ -51,7 +38,15 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
               <img src="/share.png" width="26.67" height="13.33" />
             </S.ShareImg>
             <S.MapImg>
-              <img src="/map.png" width="18.67" height="26.67" />
+              <Tooltip
+                placement="topRight"
+                title={`
+              ${props.data?.fetchBoard.boardAddress.zipcode}
+              ${props.data?.fetchBoard.boardAddress.address}
+              ${props.data?.fetchBoard.boardAddress.addressDetail}`}
+              >
+                <AddressImg src="/map.png" width="18.67" height="26.67" />
+              </Tooltip>
             </S.MapImg>
           </S.Headimg>
         </S.Header>
