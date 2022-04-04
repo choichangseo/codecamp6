@@ -41,6 +41,7 @@ export default function BestBoard() {
     border-radius: 15%;
     text-align: center;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
   `;
   const BestBoardWriter = styled.div`
     padding-top: 10px;

@@ -21,7 +21,6 @@ export default function BoardDetail() {
   >(DELETE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
-  const [password, setPassword] = useState();
   const router = useRouter();
 
   const { data } = useQuery(FETCH_BOARD, {

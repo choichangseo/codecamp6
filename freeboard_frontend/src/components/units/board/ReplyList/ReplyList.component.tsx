@@ -4,10 +4,23 @@ import { FETCH_BOARDS_COMMENTS, DELETE_COMMENT } from "./ReplyList.queries";
 import ReplyListPresenter from "./ReplyList.presenter";
 import { MouseEvent, useState, ChangeEvent } from "react";
 import { Modal } from "antd";
+import {
+  IMutation,
+  IMutationDeleteBoardCommentArgs,
+  IQuery,
+  IQueryFetchBoardCommentsArgs,
+} from "../../../../commons/types/generated/types";
+
+interface ReplyList {
+  fetchMoreResult: any;
+}
 
 export default function ReplyList() {
   const router = useRouter();
-  const [deleteBoardComment] = useMutation(DELETE_COMMENT);
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_COMMENT);
   const [password, setPass] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [id, setId] = useState("");
@@ -46,7 +59,10 @@ export default function ReplyList() {
     setIsModalVisible(false);
   };
 
-  const { data: data2, fetchMore } = useQuery(FETCH_BOARDS_COMMENTS, {
+  const { data: data2, fetchMore } = useQuery<
+    Pick<IQuery, "fetchBoardComments">,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARDS_COMMENTS, {
     variables: { boardId: String(router.query.boardId) },
   });
 

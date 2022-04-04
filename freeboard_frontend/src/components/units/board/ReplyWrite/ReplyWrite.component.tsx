@@ -99,7 +99,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     }
-    
+
     try {
       const result = await updateBoardComment({
         variables: {
@@ -117,6 +117,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
       console.log(result);
       Modal.success({ content: "댓글이 수정되었습니다." });
       props.setIsEdit?.(false);
+      // 있으면 실행하게끔
     } catch (error: any) {
       Modal.error({ content: error.message });
     }
@@ -136,6 +137,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
       handleChange={handleChange}
       isEdit={props.isEdit}
       data={data}
+      el={props.el}
     />
   );
 }

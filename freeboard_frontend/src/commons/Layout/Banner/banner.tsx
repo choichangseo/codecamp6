@@ -5,13 +5,13 @@ export default function BannerLayout() {
   const Wrapper = styled.div`
     height: 400px;
   `;
-  const BannerImg = styled(Slider)`
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("/Space.png");
-  `;
+  // const BannerImg = styled(Slider)`
+  //   width: 100%;
+  //   height: 300px;
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  //   background-image: url("/Space.png");
+  // `;
 
   const settings = {
     dots: true,
@@ -24,7 +24,7 @@ export default function BannerLayout() {
   return (
     <Wrapper>
       <div>
-        <BannerImg {...settings}>
+        <Slider {...settings}>
           <div></div>
           <div>
             <h3>2</h3>
@@ -41,7 +41,7 @@ export default function BannerLayout() {
           <div>
             <h3>6</h3>
           </div>
-        </BannerImg>
+        </Slider>
       </div>
     </Wrapper>
   );
