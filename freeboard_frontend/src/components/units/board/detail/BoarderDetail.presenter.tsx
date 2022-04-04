@@ -41,9 +41,9 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
               <Tooltip
                 placement="topRight"
                 title={`
-              ${props.data?.fetchBoard.boardAddress.zipcode}
-              ${props.data?.fetchBoard.boardAddress.address}
-              ${props.data?.fetchBoard.boardAddress.addressDetail}`}
+              ${props.data?.fetchBoard?.boardAddress?.zipcode || ""}
+              ${props.data?.fetchBoard?.boardAddress?.address || ""}
+              ${props.data?.fetchBoard?.boardAddress?.addressDetail || ""}`}
               >
                 <AddressImg src="/map.png" width="18.67" height="26.67" />
               </Tooltip>

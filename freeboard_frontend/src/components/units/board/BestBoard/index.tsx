@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { IUseditem } from "../../../../../../class/src/commons/types/generated/types";
+import { useRouter } from "next/router";
 
 const FETCH_BOARD_BEST = gql`
   query fetchBoardsOfTheBest {
@@ -18,14 +19,18 @@ const FETCH_BOARD_BEST = gql`
 `;
 
 export default function BestBoard() {
+  const router = useRouter();
   const { data } = useQuery<Pick<IQuery, "fetchBoardsOfTheBest">, IUseditem>(
     FETCH_BOARD_BEST
   );
-
+  const onClickBest = (event: any) => {
+    router.push(`/boards/${event.target.id}`);
+  };
   const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    cursor: pointer;
   `;
   const BestBoardRow = styled.div`
     display: flex;
@@ -54,7 +59,9 @@ export default function BestBoard() {
     <Wrapper>
       {data?.fetchBoardsOfTheBest.map((el: any) => (
         <BestBoardRow key={el._id}>
-          <BestBoardTittle>{el.title}</BestBoardTittle>
+          <BestBoardTittle onClick={onClickBest} id={el._id}>
+            {el.title}
+          </BestBoardTittle>
           <BestBoardWriter>{el.writer}</BestBoardWriter>
           <BestBoardLikeCount>{el.likeCount}</BestBoardLikeCount>
           <BestBoardCreatedAt>{getDate(el.createdAt)}</BestBoardCreatedAt>

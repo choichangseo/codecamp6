@@ -116,12 +116,14 @@ export const Like = styled.div`
   flex-direction: column;
   align-items: center;
   margin-right: 40px;
+  cursor: pointer;
 `;
 
 export const DisLike = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `;
 export const LikeCount = styled.div`
   font-family: "Noto Sans CJK KR";
@@ -157,6 +159,7 @@ export const NavButton = styled.div`
   line-height: 50px;
   text-align: center;
   margin: 0px 12px 0px 12px;
+  cursor: pointer;
 `;
 
 export const MarkLine = styled.div`
@@ -165,9 +168,3 @@ export const MarkLine = styled.div`
   margin-bottom: 40px;
   border-bottom: 1px solid #bdbdbd;
 `;
-
-export const Bbb = styled.div``;
-
-export const Zipcode = styled.div``;
-
-export const AddressDetail = styled.div``;

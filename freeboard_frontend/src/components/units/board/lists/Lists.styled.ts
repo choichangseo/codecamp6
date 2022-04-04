@@ -67,6 +67,7 @@ export const Title = styled.div`
   font-size: 16px;
   color: #4f4f4f;
   width: 500px;
+  cursor: pointer;
 `;
 export const CreatedDate = styled.div`
   font-family: "Noto Sans CJK KR";

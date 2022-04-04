@@ -32,6 +32,7 @@ export const StarRating = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 22px;
+  cursor: pointer;
 `;
 
 export const Errormsg = styled.div`
@@ -87,6 +88,7 @@ export const RegisterButton = styled.button`
   font-size: 16px;
   text-align: center;
   color: white;
+  cursor: pointer;
 `;
 
 export const CommentError = styled.div`

@@ -95,6 +95,11 @@ export default function ReplyWrite(props: ReplyWriteProps) {
   };
 
   const onClickUpdateComment = async () => {
+    if (!comment && !rating) {
+      Modal.error({ content: "수정한 내용이 없습니다." });
+      return;
+    }
+    
     try {
       const result = await updateBoardComment({
         variables: {
