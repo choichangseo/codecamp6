@@ -5,7 +5,6 @@ import { getDate } from "../../../../commons/libraries/utils";
 import ReplyWrite from "../ReplyWrite/ReplyWrite.component";
 
 interface ReplyCommentItemProps {
-  onClickEdit: (event: MouseEvent<HTMLImageElement>) => void;
   el?: any;
   showModal: (event: MouseEvent<HTMLImageElement>) => void;
 }

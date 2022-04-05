@@ -67,6 +67,7 @@ export const Title = styled.div`
   font-size: 16px;
   color: #4f4f4f;
   width: 500px;
+  text-overflow: ellipsis;
   cursor: pointer;
 `;
 export const CreatedDate = styled.div`

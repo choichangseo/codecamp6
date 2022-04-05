@@ -1,5 +1,5 @@
 {
-  "devDependencies": {
-    "typescript": "^4.6.2"
+  "dependencies": {
+    "@types/react-infinite-scroller": "^1.2.3"
   }
 }

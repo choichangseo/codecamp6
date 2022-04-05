@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoarderDetailUI from "./BoarderDetail.presenter";
 import {
@@ -7,8 +6,8 @@ import {
   LIKE_BOARD,
   DISLIKE_BOARD,
 } from "./BoarderDetail.queries";
-import { useMutation } from "@apollo/client";
-import { MouseEvent, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { MouseEvent } from "react";
 import {
   IMutation,
   IMutationDeleteBoardArgs,

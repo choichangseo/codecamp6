@@ -11,10 +11,6 @@ import {
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
 
-interface ReplyList {
-  fetchMoreResult: any;
-}
-
 export default function ReplyList() {
   const router = useRouter();
   const [deleteBoardComment] = useMutation<
@@ -42,7 +38,7 @@ export default function ReplyList() {
     setPass(event.target.value);
   };
 
-  const onClickBoardDelete = (event: MouseEvent<HTMLImageElement>) => {
+  const onClickBoardDelete = () => {
     deleteBoardComment({
       variables: {
         boardCommentId: id,
@@ -71,7 +67,7 @@ export default function ReplyList() {
     fetchMore({
       variables: { page: Math.ceil(data2.fetchBoardComments.length / 10) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult.fetchBoardComments)
+        if (!fetchMoreResult?.fetchBoardComments)
           return { fetchBoardComments: [...prev.fetchBoardComments] };
         return {
           fetchBoardComments: [

@@ -38,7 +38,7 @@ export default function PaginationUI(props: PaginationProps) {
       )}
       <S.Next
         onClick={props.onClickNextPage}
-        disabled={props.startPage + 10 > props.lastPage ? true : false}
+        disabled={props.startPage + 10 > props.lastPage}
       >
         &#62;
       </S.Next>

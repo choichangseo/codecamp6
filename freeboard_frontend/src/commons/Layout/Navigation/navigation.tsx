@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Mark } from "../../../components/units/board/detail/BorderDetail.styled";
 
 export default function NavigationLayout() {
   const Wrapper = styled.div`

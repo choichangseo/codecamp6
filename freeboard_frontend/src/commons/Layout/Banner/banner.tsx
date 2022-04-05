@@ -20,26 +20,24 @@ export default function BannerLayout() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const Img1 = styled.img`
+    width: 100%;
+    height: 250px;
+  `;
+  const Img2 = styled.img`
+    width: 100%;
+    height: 250px;
+  `;
 
   return (
     <Wrapper>
       <div>
         <Slider {...settings}>
-          <div></div>
           <div>
-            <h3>2</h3>
+            <Img1 src="/spacemoon.jpeg" />
           </div>
           <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
+            <Img2 src="/dogstar.png" />
           </div>
         </Slider>
       </div>

@@ -14,6 +14,7 @@ export default function Pagination(props: PaginationProps) {
   const index = props.boardsCount?.fetchBoardsCount % 10;
 
   const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {
+    if (!(event.target instanceof Element)) return;
     props.refetch({ page: Number(event.target.id) });
     if (event.target instanceof Element) setActive(event.target.id);
   };

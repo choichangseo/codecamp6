@@ -9,50 +9,50 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
     <S.Wrapper>
       <S.Main>
         <S.Title>게시물 {props.isEdit ? "수정" : "등록"}</S.Title>
-        <S.Userinfo_wrapper>
+        <S.UserinfoWrapper>
           <S.Name>
             <S.Subtitle>작성자</S.Subtitle>
-            <S.First_input
+            <S.FirstInput
               type="text"
               placeholder="이름을 적어주세요"
               onChange={props.onChangeWriter}
               defaultValue={props.data?.fetchBoard.writer}
             />
-            <S.Errormsg>{props.writererror}</S.Errormsg>
+            <S.ErrorMsg>{props.writererror}</S.ErrorMsg>
           </S.Name>
           <S.Password>
             <S.Subtitle>비밀번호</S.Subtitle>
-            <S.First_input
+            <S.FirstInput
               type="text"
               placeholder="비밀번호를 입력해주세요"
               onChange={props.onChangePassword}
               defaultValue={props.data?.fetchBoard.password}
             />
-            <S.Errormsg>{props.passworderror}</S.Errormsg>
+            <S.ErrorMsg>{props.passworderror}</S.ErrorMsg>
           </S.Password>
-        </S.Userinfo_wrapper>
-        <S.Title_Wrapper>
+        </S.UserinfoWrapper>
+        <S.TitleWrapper>
           <S.Subtitle>제목</S.Subtitle>
-          <S.Second_input
+          <S.SecondInput
             type="text"
             placeholder="제목을 작성해주세요."
             onChange={props.onChangeTittle}
             defaultValue={props.data?.fetchBoard.title}
           />
-          <S.Errormsg>{props.titleerror}</S.Errormsg>
-        </S.Title_Wrapper>
-        <S.Content_Wrapper>
+          <S.ErrorMsg>{props.titleerror}</S.ErrorMsg>
+        </S.TitleWrapper>
+        <S.ContentWrapper>
           <S.Subtitle>내용</S.Subtitle>
-          <S.Third_input
+          <S.ThirdInput
             placeholder="내용을 작성해주세요."
             onChange={props.onChangeContents}
             defaultValue={props.data?.fetchBoard.contents}
           />
-          <S.Errormsg>{props.contentserror}</S.Errormsg>
-        </S.Content_Wrapper>
-        <S.Zipcode_Wrapper>
+          <S.ErrorMsg>{props.contentserror}</S.ErrorMsg>
+        </S.ContentWrapper>
+        <S.ZipcodeWrapper>
           <S.Subtitle>주소</S.Subtitle>
-          <S.Zipcode_input
+          <S.ZipcodeInput
             type="text"
             readOnly
             value={
@@ -61,10 +61,10 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
               ""
             }
           />
-          <S.Zip_ser_button onClick={props.showModal}>
+          <S.ZipSerButton onClick={props.showModal}>
             우편번호 검색
-          </S.Zip_ser_button>
-          <S.Fourth_input
+          </S.ZipSerButton>
+          <S.FourthInput
             readOnly
             value={
               props.myhome
@@ -73,7 +73,7 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
             }
             type="text"
           />
-          <S.Fourth_input
+          <S.FourthInput
             defaultValue={
               props.addressDetail ||
               props.data?.fetchBoard.boardAddress?.addressDetail ||
@@ -82,36 +82,36 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
             onChange={props.onChangeAddress}
             type="text"
           />
-        </S.Zipcode_Wrapper>
-        <S.Youtube_Wrapper>
+        </S.ZipcodeWrapper>
+        <S.YoutubeWrapper>
           <S.Subtitle>유튜브</S.Subtitle>
-          <S.Fourth_input
+          <S.FourthInput
             onChange={props.onChangeYoutube}
             type="text"
             placeholder="Youtube URL을 입력해주세요."
           />
-        </S.Youtube_Wrapper>
-        <S.Photo_Wrapper>
+        </S.YoutubeWrapper>
+        <S.PhotoWrapper>
           <S.Subtitle>사진 첨부</S.Subtitle>
-          <S.Upload_button>+ Upload</S.Upload_button>
-          <S.Upload_button>+ Upload</S.Upload_button>
-          <S.Upload_button>+ Upload</S.Upload_button>
-        </S.Photo_Wrapper>
-        <S.Radio_Wrapper>
+          <S.UploadButton>+ Upload</S.UploadButton>
+          <S.UploadButton>+ Upload</S.UploadButton>
+          <S.UploadButton>+ Upload</S.UploadButton>
+        </S.PhotoWrapper>
+        <S.RadioWrapper>
           <S.Subtitle>메인설정</S.Subtitle>
-          <S.Radio_place>
+          <S.RadioPlace>
             <S.Select type="radio" />
-            <S.Select_title>유튜브</S.Select_title>
+            <S.SelectTitle>유튜브</S.SelectTitle>
             <S.Select type="radio" />
-            <S.Select_title>사진</S.Select_title>
-          </S.Radio_place>
-        </S.Radio_Wrapper>
-        <S.Register_button
+            <S.SelectTitle>사진</S.SelectTitle>
+          </S.RadioPlace>
+        </S.RadioWrapper>
+        <S.RegisterButton
           onClick={props.isEdit ? props.onClickEditPage : props.onClickSubmit}
           isActive={props.isActive}
         >
           {props.isEdit ? "수정" : "등록"}하기
-        </S.Register_button>
+        </S.RegisterButton>
         {props.isModalVisible && (
           <Modal
             visible={true}

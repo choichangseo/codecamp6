@@ -48,6 +48,7 @@ export default function BestBoard() {
   `;
   const BestBoardTittle = styled.div`
     padding-top: 10px;
+    text-overflow: ellipsis;
   `;
   const BestBoardLikeCount = styled.div`
     padding-top: 10px;

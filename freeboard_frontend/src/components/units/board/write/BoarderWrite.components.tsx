@@ -52,7 +52,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
 
   function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setWriterError("");
     }
     if (
@@ -69,7 +69,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
 
   function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setPasswordError("");
     }
     if (
@@ -86,7 +86,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
 
   function onChangeTittle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setTitleError("");
     }
     if (
@@ -103,7 +103,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
 
   function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setContentsError("");
     }
     if (
@@ -157,16 +157,16 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   };
 
   const onClickSubmit = async () => {
-    if (writer == "") {
+    if (writer === "") {
       setWriterError("이름을 입력해주세요.");
     }
-    if (password == "") {
+    if (password === "") {
       setPasswordError("비밀번호를 입력해주세요.");
     }
-    if (title == "") {
+    if (title === "") {
       setTitleError("제목을 입력해주세요.");
     }
-    if (contents == "") {
+    if (contents === "") {
       setContentsError("내용을 입력해주세요.");
     }
     if (writer !== "" && password !== "" && title !== "" && contents !== "") {

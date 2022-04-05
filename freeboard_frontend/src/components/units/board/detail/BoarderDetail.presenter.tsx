@@ -1,10 +1,9 @@
 import * as S from "./BorderDetail.styled";
 import { getDate } from "../../../../commons/libraries/utils";
 import { MouseEvent } from "react";
-import React from "react";
-import ReactPlayer from "react-player";
-import { Tooltip, Button } from "antd";
+import { Tooltip } from "antd";
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
 
 interface BoarderDetailUIProps {
   data?: any;

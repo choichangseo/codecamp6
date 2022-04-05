@@ -26,7 +26,7 @@ export const Subtitle = styled.div`
   font-size: 16px;
   margin-bottom: 16px;
 `;
-export const Userinfo_wrapper = styled.div`
+export const UserinfoWrapper = styled.div`
   margin-bottom: 40px;
   display: flex;
   flex-direction: row;
@@ -41,28 +41,28 @@ export const Password = styled.div`
   width: 468px;
   height: 92px;
 `;
-export const First_input = styled.input`
+export const FirstInput = styled.input`
   width: 486px;
   height: 52px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
 `;
-export const Title_Wrapper = styled.div`
+export const TitleWrapper = styled.div`
   width: 996px;
   height: 92px;
   margin-bottom: 40px;
 `;
-export const Second_input = styled.input`
+export const SecondInput = styled.input`
   width: 996px;
   height: 52px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
 `;
-export const Content_Wrapper = styled.div`
+export const ContentWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-export const Third_input = styled.textarea`
+export const ThirdInput = styled.textarea`
   padding: 10px;
   max-width: 100%;
   width: 996px;
@@ -72,8 +72,8 @@ export const Third_input = styled.textarea`
   resize: none;
 `;
 
-export const Zipcode_Wrapper = styled.div``;
-export const Zipcode_input = styled.input`
+export const ZipcodeWrapper = styled.div``;
+export const ZipcodeInput = styled.input`
   width: 77px;
   height: 52px;
   margin-right: 16px;
@@ -83,7 +83,7 @@ export const Zipcode_input = styled.input`
   box-sizing: border-box;
   text-align: center;
 `;
-export const Zip_ser_button = styled.button`
+export const ZipSerButton = styled.button`
   background-color: black;
   color: white;
   width: 123px;
@@ -92,21 +92,21 @@ export const Zip_ser_button = styled.button`
   font-size: 16px;
 `;
 
-export const Fourth_input = styled.input`
+export const FourthInput = styled.input`
   width: 996px;
   height: 52px;
   margin-bottom: 30px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
 `;
-export const Youtube_Wrapper = styled.div`
+export const YoutubeWrapper = styled.div`
   margin-bottom: 40px;
 `;
-export const Photo_Wrapper = styled.div`
+export const PhotoWrapper = styled.div`
   margin-bottom: 40px;
 `;
 
-export const Upload_button = styled.button`
+export const UploadButton = styled.button`
   width: 78px;
   height: 78px;
   margin-right: 24px;
@@ -115,21 +115,21 @@ export const Upload_button = styled.button`
   line-height: 18px;
   border: none;
 `;
-export const Radio_Wrapper = styled.div``;
-export const Radio_place = styled.div`
+export const RadioWrapper = styled.div``;
+export const RadioPlace = styled.div`
   display: flex;
   flex-direction: row;
 `;
 export const Select = styled.input`
   margin-right: 10px;
 `;
-export const Select_title = styled.div`
+export const SelectTitle = styled.div`
   font-family: "Noto Sans CJK KR";
   font-size: 16px;
   margin-right: 22px;
   line-height: 22px;
 `;
-export const Register_button = styled.button`
+export const RegisterButton = styled.button`
   width: 179px;
   height: 52px;
   background-color: ${(props: IsResisterButtonProps) =>
@@ -142,7 +142,7 @@ export const Register_button = styled.button`
   cursor: pointer;
 `;
 
-export const Errormsg = styled.div`
+export const ErrorMsg = styled.div`
   font-size: 5px;
   color: red;
 `;

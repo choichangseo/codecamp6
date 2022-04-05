@@ -13,8 +13,8 @@ import {
   IMutationCreateBoardCommentArgs,
   IMutationUpdateBoardCommentArgs,
   IQuery,
+  IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
-import { IQueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
 
 interface ReplyWriteProps {
   el?: any;
@@ -46,21 +46,21 @@ export default function ReplyWrite(props: ReplyWriteProps) {
 
   const onChangeReply = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setCommentError("댓글내용을 입력해주세요");
     }
   };
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setWriterError("작성자 입력");
     }
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    if (event.target.value == "") {
+    if (event.target.value === "") {
       setPasswordError("비밀번호 입력");
     }
   };

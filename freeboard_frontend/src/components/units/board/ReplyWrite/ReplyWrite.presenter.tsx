@@ -1,6 +1,6 @@
 import * as S from "./ReplyWrite.styled";
 import { ChangeEvent } from "react";
-import { Rate, Button } from "antd";
+import { Rate } from "antd";
 import "antd/dist/antd.css";
 
 interface ReplyWritePresenterProps {

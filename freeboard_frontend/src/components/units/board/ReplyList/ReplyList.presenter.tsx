@@ -4,10 +4,11 @@ import "antd/dist/antd.css";
 import ReplyCommentItem from "./ReplyCommentItem";
 import { Modal } from "antd";
 import InfiniteScroll from "react-infinite-scroller";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 interface ReplyListPresenterProps {
-  data2?: any;
-  onClickBoardDelete: (event: MouseEvent<HTMLImageElement>) => void;
+  data2?: Pick<IQuery, "fetchBoardComments">;
+  onClickBoardDelete: () => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   handleCancel: any;
   handleOk: any;
