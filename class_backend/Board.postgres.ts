@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
 
 // entity는 함수이고 이 함수 안에 Board 안에 있는 인자를 넣어줌
 @Entity()
-export class Board {
+export class Board extends BaseEntity {
   @PrimaryGeneratedColumn("increment")
   number!: number;
 
@@ -14,6 +14,8 @@ export class Board {
 
   @Column({ type: "text" })
   contents!: string;
+
+  // deletedAt : Date // soft-delete
 }
 
 // 데이터베이스에 들어갈 타입도 지정해줘야함({type:"text"})
