@@ -7,6 +7,8 @@ export interface IsResisterButtonProps {
 export interface BoarderWritePageProps {
   isEdit?: boolean;
   data?: any;
+  imageUrl?: string;
+  setImageUrl: any;
 }
 
 export interface BoarderWriteUIProps {
@@ -33,12 +35,15 @@ export interface BoarderWriteUIProps {
   myhome: string;
   zipcode: string;
   addressDetail: string;
+  imageUrl?: string;
+  setImageUrl: any;
 }
 
 export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  images?: any;
   boardAddress?: {
     zipcode?: string;
     address?: string;

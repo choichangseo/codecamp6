@@ -15,6 +15,7 @@ export const FETCH_BOARD = gql`
       dislikeCount
       createdAt
       youtubeUrl
+      images
       boardAddress {
         zipcode
         address
@@ -32,5 +33,7 @@ export default function BoardEditPage() {
     }
   );
 
-  return <BoarderWriterPage data={data} isEdit={true} />;
+  return (
+    <BoarderWriterPage data={data} isEdit={true} setImageUrl={undefined} />
+  );
 }

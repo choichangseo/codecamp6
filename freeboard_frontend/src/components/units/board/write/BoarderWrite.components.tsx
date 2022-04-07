@@ -12,6 +12,7 @@ import {
 } from "../../../../commons/types/generated/types";
 
 export default function BoarderWriterPage(props: BoarderWritePageProps) {
+  const [imageUrl, setImageUrl] = useState("");
   const [youtube, setYoutube] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [writer, setWriter] = useState("");
@@ -119,7 +120,14 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   }
 
   const onClickEditPage = async () => {
-    if (!title && !contents && !myhome && !addressDetail && !zipcode) {
+    if (
+      !title &&
+      !contents &&
+      !myhome &&
+      !addressDetail &&
+      !zipcode &&
+      !imageUrl
+    ) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     }
@@ -132,6 +140,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtube) updateBoardInput.youtubeUrl = youtube;
+    if (imageUrl) updateBoardInput.images = imageUrl;
     if (zipcode || addressDetail || myhome) {
       updateBoardInput.boardAddress = {};
       if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
@@ -179,6 +188,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
               title: title,
               contents: contents,
               youtubeUrl: youtube,
+              images: [imageUrl],
               boardAddress: {
                 zipcode: String(zipcode),
                 address: myhome,
@@ -233,6 +243,8 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       myhome={myhome}
       zipcode={zipcode}
       addressDetail={addressDetail}
+      imageUrl={imageUrl}
+      setImageUrl={setImageUrl}
     />
   );
 }

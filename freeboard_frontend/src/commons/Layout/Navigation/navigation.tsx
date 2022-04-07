@@ -6,7 +6,7 @@ export default function NavigationLayout() {
     flex-direction: row;
     justify-content: center;
     height: 64px;
-    background-color: #ebe1f4;
+    background-color: #0048b3;
   `;
 
   const Mark = styled.div`
@@ -19,18 +19,21 @@ export default function NavigationLayout() {
     line-height: 60px;
     font-size: 25px;
     font-weight: bold;
+    color: white;
   `;
 
   const Market = styled.div`
     line-height: 60px;
     font-size: 25px;
     font-weight: bold;
+    color: white;
   `;
 
   const MyPage = styled.div`
     line-height: 60px;
     font-size: 25px;
     font-weight: bold;
+    color: white;
   `;
 
   return (

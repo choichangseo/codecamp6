@@ -1,12 +1,8 @@
 import styled from "@emotion/styled";
 import { IsResisterButtonProps } from "./BoarderWrite.types";
 
-export const Wrapper = styled.div`
-  width: 1920px;
-  height: 2844px;
-`;
+export const Wrapper = styled.div``;
 export const Main = styled.div`
-  width: 1200px;
   margin: 717px 360px 280px 360px;
   padding-right: 103px;
   padding-left: 101px;
@@ -106,15 +102,6 @@ export const PhotoWrapper = styled.div`
   margin-bottom: 40px;
 `;
 
-export const UploadButton = styled.button`
-  width: 78px;
-  height: 78px;
-  margin-right: 24px;
-  font-family: "Noto Sans CJK KR";
-  font-size: 12px;
-  line-height: 18px;
-  border: none;
-`;
 export const RadioWrapper = styled.div``;
 export const RadioPlace = styled.div`
   display: flex;

@@ -44,7 +44,7 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
               ${props.data?.fetchBoard?.boardAddress?.address || ""}
               ${props.data?.fetchBoard?.boardAddress?.addressDetail || ""}`}
               >
-                <AddressImg src="/map.png" width="18.67" height="26.67" />
+                <AddressImg src="/map1.png" width="18.67" height="26.67" />
               </Tooltip>
             </S.MapImg>
           </S.Headimg>
@@ -54,7 +54,11 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
           <S.Title>{props.data?.fetchBoard.title}</S.Title>
           <S.ContentsBody>
             <S.ContentsImg>
-              <img src="/image.png" width="996" height="480" />
+              <img
+                src={`https://storage.googleapis.com/${props.data?.fetchBoard.images}`}
+                width="996"
+                height="480"
+              />
             </S.ContentsImg>
             <S.Contents>{props.data?.fetchBoard.contents}</S.Contents>
             <S.Video>

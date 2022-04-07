@@ -11,6 +11,7 @@ export const FETCH_BOARD = gql`
       dislikeCount
       createdAt
       youtubeUrl
+      images
       boardAddress {
         zipcode
         address

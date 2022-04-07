@@ -5,13 +5,6 @@ export default function BannerLayout() {
   const Wrapper = styled.div`
     height: 400px;
   `;
-  // const BannerImg = styled(Slider)`
-  //   width: 100%;
-  //   height: 300px;
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
-  //   background-image: url("/Space.png");
-  // `;
 
   const settings = {
     dots: true,
@@ -22,11 +15,11 @@ export default function BannerLayout() {
   };
   const Img1 = styled.img`
     width: 100%;
-    height: 250px;
+    height: 300px;
   `;
   const Img2 = styled.img`
     width: 100%;
-    height: 250px;
+    height: 300px;
   `;
 
   return (
@@ -34,10 +27,10 @@ export default function BannerLayout() {
       <div>
         <Slider {...settings}>
           <div>
-            <Img1 src="/spacemoon.jpeg" />
+            <Img1 src="/landing/hometeam.jpeg" />
           </div>
           <div>
-            <Img2 src="/dogstar.png" />
+            <Img2 src="/landing/dallashome.png" />
           </div>
         </Slider>
       </div>

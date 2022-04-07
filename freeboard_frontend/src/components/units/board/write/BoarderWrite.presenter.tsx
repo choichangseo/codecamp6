@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import { BoarderWriteUIProps } from "./BoarderWrite.types";
 import "antd/dist/antd.css";
 import DaumPostcode from "react-daum-postcode";
+import UploadFile from "../../../commons/UploadFile/uploadfile";
 
 export default function BoarderWriteUI(props: BoarderWriteUIProps) {
   return (
@@ -93,9 +94,10 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
         </S.YoutubeWrapper>
         <S.PhotoWrapper>
           <S.Subtitle>사진 첨부</S.Subtitle>
-          <S.UploadButton>+ Upload</S.UploadButton>
-          <S.UploadButton>+ Upload</S.UploadButton>
-          <S.UploadButton>+ Upload</S.UploadButton>
+          <UploadFile
+            imageUrl={props.imageUrl}
+            setImageUrl={props.setImageUrl}
+          />
         </S.PhotoWrapper>
         <S.RadioWrapper>
           <S.Subtitle>메인설정</S.Subtitle>

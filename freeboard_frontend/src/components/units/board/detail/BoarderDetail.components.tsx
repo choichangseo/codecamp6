@@ -61,7 +61,7 @@ export default function BoardDetail() {
       ],
     });
   };
-
+  console.log(data);
   return (
     <BoarderDetailUI
       data={data}

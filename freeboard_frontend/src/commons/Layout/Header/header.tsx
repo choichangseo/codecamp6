@@ -3,20 +3,27 @@ import styled from "@emotion/styled";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
-  height: 152px;
+  height: 90px;
+  background-color: black;
 `;
 const EarthImg = styled.img``;
 
 const EarthFont = styled.div`
-  font-size: 25px;
+  color: white;
+  font-size: 45px;
 `;
 
 export default function HeaderLayout() {
   return (
     <Wrapper>
-      <EarthImg src="/Earth.png" width={30} height={30}></EarthImg>
-      <EarthFont>Earth.Market</EarthFont>
+      <EarthImg
+        src="/landing/maverickslogo.png"
+        width={130}
+        height={80}
+      ></EarthImg>
+      <EarthFont>Mavericks.Fan.Page</EarthFont>
     </Wrapper>
   );
 }
