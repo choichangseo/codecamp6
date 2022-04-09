@@ -88,3 +88,23 @@ export const BoardCreateButton = styled.div`
   text-align: center;
   border: 1px solid lightgray;
 `;
+
+export const SearchWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+`;
+
+export const SearchInput = styled.input`
+  width: 500px;
+  height: 40px;
+`;
+
+interface IProps {
+  isMatch: boolean;
+}
+export const Word = styled.span`
+  color: ${(props: IProps) => (props.isMatch ? "orange" : "black")};
+`;

@@ -1,7 +1,9 @@
-import { MouseEvent } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 
 export interface ListPresenterProps {
-    data? : any
-    onClickMoveBoarderWrite: ()=> void
-    onClickMoveBoardTitle: (event: MouseEvent<HTMLDivElement>) => void
+  data?: any;
+  keyWord: string;
+  onClickMoveBoarderWrite: () => void;
+  onClickMoveBoardTitle: (event: MouseEvent<HTMLDivElement>) => void;
+  onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -38,21 +38,25 @@ export default function ReplyList() {
     setPass(event.target.value);
   };
 
-  const onClickBoardDelete = () => {
-    deleteBoardComment({
-      variables: {
-        boardCommentId: id,
-        password: password,
-      },
-      refetchQueries: [
-        {
-          query: FETCH_BOARDS_COMMENTS,
-          variables: { boardId: String(router.query.boardId) },
+  const onClickBoardDelete = async () => {
+    try {
+      await deleteBoardComment({
+        variables: {
+          boardCommentId: id,
+          password: password,
         },
-      ],
-    });
-    Modal.success({ content: "댓글이 삭제되었습니다." });
-    setIsModalVisible(false);
+        refetchQueries: [
+          {
+            query: FETCH_BOARDS_COMMENTS,
+            variables: { boardId: String(router.query.boardId) },
+          },
+        ],
+      });
+      Modal.success({ content: "댓글이 삭제되었습니다." });
+      setIsModalVisible(false);
+    } catch (error: any) {
+      Modal.error({ content: "댓글 삭제에 실패했습니다." });
+    }
   };
 
   const { data: data2, fetchMore } = useQuery<

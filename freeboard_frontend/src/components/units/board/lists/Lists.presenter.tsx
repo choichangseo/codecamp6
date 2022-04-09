@@ -1,11 +1,18 @@
 import * as S from "./Lists.styled";
 import { getDate } from "../../../../commons/libraries/utils";
-
 import { ListPresenterProps } from "./Lists.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ListPresenter(props: ListPresenterProps) {
   return (
     <S.ListPageWrapper>
+      <S.SearchWrapper>
+        <S.SearchInput
+          onChange={props.onChangeSearch}
+          type="text"
+          placeholder="검색어를 입력해주세요."
+        />
+      </S.SearchWrapper>
       <S.Wrapper>
         <S.HeadLine>
           <S.HeadNumber>번호</S.HeadNumber>
@@ -18,7 +25,14 @@ export default function ListPresenter(props: ListPresenterProps) {
             <S.IndexNumber>{index + 1}</S.IndexNumber>
             <S.Writer>{el.writer}</S.Writer>
             <S.Title id={el._id} onClick={props.onClickMoveBoardTitle}>
-              {el.title}
+              {el.title
+                .replaceAll(props.keyWord, `$%&${props.keyWord}$%&`)
+                .split("$%&")
+                .map((el: any) => (
+                  <S.Word key={uuidv4()} isMatch={props.keyWord === el}>
+                    {el}
+                  </S.Word>
+                ))}
             </S.Title>
             <S.CreatedDate>{getDate(el.createdAt)}</S.CreatedDate>
           </S.Row>
