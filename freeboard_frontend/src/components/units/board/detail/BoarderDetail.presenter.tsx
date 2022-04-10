@@ -54,11 +54,16 @@ export default function BoarderDetailUI(props: BoarderDetailUIProps) {
           <S.Title>{props.data?.fetchBoard.title}</S.Title>
           <S.ContentsBody>
             <S.ContentsImg>
-              <img
-                src={`https://storage.googleapis.com/${props.data?.fetchBoard.images}`}
-                width="996"
-                height="480"
-              />
+              {props.data?.fetchBoard.images
+                ?.filter((el: string) => el)
+                .map((el: string) => (
+                  <img
+                    key={el}
+                    src={`https://storage.googleapis.com/${el}`}
+                    width="996"
+                    height="480"
+                  />
+                ))}
             </S.ContentsImg>
             <S.Contents>{props.data?.fetchBoard.contents}</S.Contents>
             <S.Video>

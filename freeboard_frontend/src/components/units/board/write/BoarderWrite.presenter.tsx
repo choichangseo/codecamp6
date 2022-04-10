@@ -4,6 +4,7 @@ import { BoarderWriteUIProps } from "./BoarderWrite.types";
 import "antd/dist/antd.css";
 import DaumPostcode from "react-daum-postcode";
 import UploadFile from "../../../commons/UploadFile/uploadfile";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoarderWriteUI(props: BoarderWriteUIProps) {
   return (
@@ -94,10 +95,14 @@ export default function BoarderWriteUI(props: BoarderWriteUIProps) {
         </S.YoutubeWrapper>
         <S.PhotoWrapper>
           <S.Subtitle>사진 첨부</S.Subtitle>
-          <UploadFile
-            imageUrl={props.imageUrl}
-            setImageUrl={props.setImageUrl}
-          />
+          {props.imageUrl?.map((el: string, index: number) => (
+            <UploadFile
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
         </S.PhotoWrapper>
         <S.RadioWrapper>
           <S.Subtitle>메인설정</S.Subtitle>

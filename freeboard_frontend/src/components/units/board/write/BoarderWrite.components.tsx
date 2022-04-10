@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoarderWriteUI from "./BoarderWrite.presenter";
@@ -12,7 +12,7 @@ import {
 } from "../../../../commons/types/generated/types";
 
 export default function BoarderWriterPage(props: BoarderWritePageProps) {
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(["", "", ""]);
   const [youtube, setYoutube] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [writer, setWriter] = useState("");
@@ -120,13 +120,16 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
   }
 
   const onClickEditPage = async () => {
+    const currentFiles = JSON.stringify(imageUrl);
+    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
     if (
       !title &&
       !contents &&
       !myhome &&
       !addressDetail &&
       !zipcode &&
-      !imageUrl
+      !isChangedFiles
     ) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
@@ -140,7 +143,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtube) updateBoardInput.youtubeUrl = youtube;
-    if (imageUrl) updateBoardInput.images = imageUrl;
+    if (isChangedFiles) updateBoardInput.images = imageUrl;
     if (zipcode || addressDetail || myhome) {
       updateBoardInput.boardAddress = {};
       if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
@@ -188,7 +191,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
               title: title,
               contents: contents,
               youtubeUrl: youtube,
-              images: [imageUrl],
+              images: imageUrl,
               boardAddress: {
                 zipcode: String(zipcode),
                 address: myhome,
@@ -218,6 +221,18 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
     setIsModalVisible(false);
   };
 
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...imageUrl];
+    newFileUrls[index] = fileUrl;
+    setImageUrl(newFileUrls);
+  };
+
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setImageUrl([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   return (
     <BoarderWriteUI
       onChangeContents={onChangeContents}
@@ -226,6 +241,7 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       onChangeWriter={onChangeWriter}
       onChangeYoutube={onChangeYoutube}
       onChangeAddress={onChangeAddress}
+      onChangeFileUrls={onChangeFileUrls}
       writererror={writererror}
       passworderror={passworderror}
       titleerror={titleerror}
@@ -244,7 +260,6 @@ export default function BoarderWriterPage(props: BoarderWritePageProps) {
       zipcode={zipcode}
       addressDetail={addressDetail}
       imageUrl={imageUrl}
-      setImageUrl={setImageUrl}
     />
   );
 }
