@@ -7,8 +7,6 @@ export interface IsResisterButtonProps {
 export interface BoarderWritePageProps {
   isEdit?: boolean;
   data?: any;
-  imageUrl: string[];
-  setImageUrl: any;
 }
 
 export interface BoarderWriteUIProps {

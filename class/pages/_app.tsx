@@ -9,6 +9,7 @@ import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { initializeApp } from "firebase/app";
 import { createUploadLink } from "apollo-upload-client";
+import { RecoilRoot } from "recoil";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCwzIL96DUQbgVnD1Hrd_0b9Kxr9_UJNO8",
@@ -35,10 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      {/* <Layout> */}
-      <Component {...pageProps} />
-      {/* </Layout> */}
+      <RecoilRoot>
+        <Global styles={globalStyles} />
+        {/* <Layout> */}
+        <Component {...pageProps} />
+        {/* </Layout> */}
+      </RecoilRoot>
     </ApolloProvider>
   );
 }

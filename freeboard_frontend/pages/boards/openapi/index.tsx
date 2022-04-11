@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "@emotion/styled";
+
+const Wrapper = styled.span`
+  display: flex;
+  flex-direction: row;
+`;
+const TeamName = styled.div``;
 
 export default function TeamInfo() {
   const [team, setTeam] = useState<string[]>([]);
@@ -16,18 +23,23 @@ export default function TeamInfo() {
   }, []);
 
   return (
-    <>
-      {team.map((el: any) => (
-        <div key={el.id}>
-          <div>{el.abbreviation}</div>
-          <div>{el.city}</div>
-          <div>{el.conference}</div>
-          <div>{el.division}</div>
-          <div>{el.full_name}</div>
-          <div>{el.name}</div>
+    <Wrapper>
+      {team.map((el: any, index: number) => (
+        <div key={el.index}>
+          {(index + 1) % 5 === 0 && <br />}
+          <TeamName>
+            {el.full_name}
+            <br />
+            {el.conference}
+            <br />
+            {el.division}
+            <br />
+            {el.abbreviation}
+            <br />
+            {el.city}
+          </TeamName>
         </div>
       ))}
-      <div></div>
-    </>
+    </Wrapper>
   );
 }
