@@ -117,7 +117,7 @@ export default function ReplyWrite(props: ReplyWriteProps) {
       console.log(result);
       Modal.success({ content: "댓글이 수정되었습니다." });
       props.setIsEdit?.(false);
-      // 있으면 실행하게끔
+      setComment("");
     } catch (error: any) {
       Modal.error({ content: error.message });
     }

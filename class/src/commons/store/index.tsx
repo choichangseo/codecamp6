@@ -9,3 +9,16 @@ export const isEdits = atom({
   key: "isEdits",
   default: false,
 });
+
+export const accessTokenState = atom({
+  key: "accessTokenState",
+  default: "",
+});
+
+export const userInfoState = atom({
+  key: "userInfoState",
+  default: {
+    email: "",
+    name: "",
+  },
+});

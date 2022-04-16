@@ -1,15 +1,10 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  ApolloProvider,
-  InMemoryCache,
-} from "@apollo/client";
 import { AppProps } from "next/app";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { initializeApp } from "firebase/app";
-import { createUploadLink } from "apollo-upload-client";
 import { RecoilRoot } from "recoil";
+import ApolloSetting from "../src/components/commons/apollo";
+import "antd/dist/antd.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCwzIL96DUQbgVnD1Hrd_0b9Kxr9_UJNO8",
@@ -24,25 +19,15 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const uploadLink = createUploadLink({
-    uri: "http://backend06.codebootcamp.co.kr/graphql",
-  });
-
-  const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink]),
-    // uri: "http://backend06.codebootcamp.co.kr/graphql",
-    cache: new InMemoryCache(),
-  });
-
   return (
-    <ApolloProvider client={client}>
-      <RecoilRoot>
+    <RecoilRoot>
+      <ApolloSetting>
         <Global styles={globalStyles} />
         {/* <Layout> */}
         <Component {...pageProps} />
         {/* </Layout> */}
-      </RecoilRoot>
-    </ApolloProvider>
+      </ApolloSetting>
+    </RecoilRoot>
   );
 }
 
