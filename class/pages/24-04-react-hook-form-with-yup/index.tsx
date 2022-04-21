@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import styled from "@emotion/styled";
-// import { yupResolver } from "@hookform/resolvers/yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object({
