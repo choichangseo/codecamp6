@@ -24,7 +24,7 @@ const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
     fetchBoard(boardId: $boardId) {
       title
-      content
+      contents
       images
     }
   }
@@ -33,6 +33,7 @@ const FETCH_BOARD = gql`
 // 이 페이지는 서버사이드 렌더링!!
 export const getServerSideProps = async (context) => {
   // const {data} = useQuery(FETCH_BOARD) // 이건 사용할 수 없음(useQuery)
+  //
 
   // 데이터 요청할것
   const result = await request(
